@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title>Spam Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        header {
+            background-color: #000;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        header img {
+            margin-right: 20px;
+            height: 50px;
+        }
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+        nav a {
+            float: left;
+            display: block;
+            color: #fff;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #575757;
+        }
+        .container {
+            padding: 20px;
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .btn {
+            background-color: red;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .profile {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .profile img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+        }
+        .profile div {
+            text-align: center;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        iframe {
+            border: 10px solid black; 
+            width: 100%; 
+            height: 500px; 
+        }
+        #csvFrame {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Spam Analysis</h1>
+</header>
+
+<nav>
+    <a href="#" onclick="showPage('welcome')">Welcome</a>
+    <a href="#" onclick="showPage('original-dataset')">Original Dataset</a>
+    <a href="#" onclick="showPage('edited-dataset')">Edited Dataset</a>
+    <a href="#" onclick="showPage('cleaned-dataset')">Cleaned Dataset</a>
+    <a href="#" onclick="showPage('visualization')">Visualization</a>
+    <a href="#" onclick="showPage('model')">ML Model</a>
+</nav>
+
+<div class="container">
+    <div id="welcome" class="page active">
+        <h2>Welcome to Our Project</h2>
+        <p>Welcome to our project! Our goal is to develop a comprehensive solution that facilitates message classification, visualization of data insights, and integration of machine learning models for spam detection.</p>
+        <p>In this project, we aim to provide users with a platform where they can:</p>
+        <ul>
+            <li>Understand the Dataset: We provide an overview of the dataset we are working with, including its structure, content, and key features.</li>
+            <li>Explore Visualizations: We offer visualizations generated using Power BI, allowing users to gain insights from the data through interactive dashboards.</li>
+            <li>Classify Messages: Users can input text messages into our platform, and our machine learning models will classify them as either spam or ham (non-spam).</li>
+        </ul>
+        <p>Our project leverages modern technologies and methodologies to deliver a user-friendly and efficient solution for message analysis and classification. We strive to provide a seamless experience for users, empowering them to make informed decisions based on data-driven insights.</p>
+        <p>We invite you to explore our project and experience the power of data analysis and machine learning in action!</p>
+     
+    </div>
+
+    <div id="original-dataset" class="page active">
+        <h2>Original Dataset</h2>
+        <p>Here, we will describe the original dataset we are working on. Details about the data and its sources will be discussed here.</p>
+        <iframe src="C:\Users\Admin\Desktop\Spam Analysis\Original Dataset.htm" width="100%" height="500px"></iframe>
+    </div>
+
+    <div id="edited-dataset" class="page active">
+        <h2>Edited Dataset</h2>
+        <p>Here, we will describe the edited dataset we are working on. Here our discussion will take place about modifying some languages</p>
+        <iframe src="C:\Users\Admin\Desktop\Spam Analysis\Edited Dataset.htm" width="100%" height="500px"></iframe>
+    </div>
+
+    <div id="cleaned-dataset" class="page active">
+        <h2>Cleaned Dataset</h2>
+        <p>Here, we will describe the cleaned dataset we are working on. After all the cleaning process.</p>
+        <iframe src="C:\Users\Admin\Desktop\Spam Analysis\preprocessed_data.htm" width="100%" height="500px"></iframe>
+    </div>
+
+    <div id="visualization" class="page active">
+        <h2>Visualization</h2>
+        <p>You will now be redirected to our secure dashboard, where you can access comprehensive tools and insights.</p>
+        <p>Your seamless transition is our priority as we aim to provide you with an exceptional user experience.</p>
+        <p>Please wait a moment as we direct you to your destination.</p>
+        <a href="https://app.powerbi.com/groups/me/reports/87a11967-6aa0-4135-8229-8f05e3f8c37a/ReportSection?experience=power-bi" target="_blank" class="btn">View Dashboard</a>
+    </div>
+
+    <div id="model" class="page active">
+        <h2>Machine Learning Model</h2>
+        <p>Enter your message below and get the output from our machine learning model.</p>
+        <h1>Spam Analysis</h1>
+        <form id="messageForm">
+            <input type="text" id="userInput" placeholder="Enter your message" style="width: 100%; padding: 10px; margin: 10px 0;">
+            <button type="button" class="btn" onclick="preprocessAndClassify()">Preprocess & Classify</button>
+        </form>
+        <p><strong>Cleaned Message:</strong> <span id="cleanedMessage"></span></p>
+        <p><strong>Classification:</strong> <span id="prediction"></span></p>
+        <p><strong>Spam Probability:</strong> <span id="spamProbability"></span>%</p>
+        <p><strong>Ham Probability:</strong> <span id="hamProbability"></span>%</p>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Spam Analysis</p>
+</footer>
+<div id="model" class="page active">
+    <h2>Machine Learning Model</h2>
+    <p>Enter your message below and get the output from our machine learning model.</p>
+    <h1>Spam Analysis</h1>
+    <form id="messageForm">
+        <input type="text" id="userInput" placeholder="Enter your message" style="width: 100%; padding: 10px; margin: 10px 0;">
+        <button type="button" class="btn" onclick="preprocessAndClassify()">Preprocess & Classify</button>
+    </form>
+    <p><strong>Cleaned Message:</strong> <span id="cleanedMessage"></span></p>
+<p><strong>Classification:</strong> <span id="prediction"></span></p>
+<p><strong>Spam Probability:</strong> <progress id="spamProgressBar" max="100" value="0"></progress> <span id="spamProbability"></span>%</p>
+<p><strong>Ham Probability:</strong> <progress id="hamProgressBar" max="100" value="0"></progress> <span id="hamProbability"></span>%</p>
+</div>
+</div>
+
+<footer>
+<p>&copy; 2024 Spam Analysis</p>
+</footer>
+
+<script>
+    function showPage(pageId) {
+        // Hide all pages
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+        // Show the selected page
+        document.getElementById(pageId).classList.add('active');
+    }
+    
+    function preprocessAndClassify() {
+        const userInput = document.getElementById('userInput').value;
+    
+        // Step 1: Preprocess the message
+        fetch('http://127.0.0.1:5000/preprocess_message', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 'message': userInput })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Display the preprocessed message
+            document.getElementById('cleanedMessage').innerText = data.preprocessed_message;
+    
+            // Step 2: Predict using the preprocessed message
+            return fetch('http://127.0.0.1:5000/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 'preprocessed_message': data.preprocessed_message })
+            });
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Display the classification and probabilities
+            document.getElementById('prediction').innerText = data.classification;
+            document.getElementById('spamProbability').innerText = `${(data.spam_probability * 100).toFixed(2)}%`;
+            document.getElementById('hamProbability').innerText = `${(data.ham_probability * 100).toFixed(2)}%`;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+    </script>
+    
+
+</body>
+</html>
